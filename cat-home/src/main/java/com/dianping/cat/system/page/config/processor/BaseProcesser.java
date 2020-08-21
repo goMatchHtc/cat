@@ -18,13 +18,6 @@
  */
 package com.dianping.cat.system.page.config.processor;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import org.unidal.lookup.annotation.Inject;
-import org.unidal.lookup.util.StringUtils;
-
 import com.dianping.cat.Cat;
 import com.dianping.cat.alarm.rule.entity.MetricItem;
 import com.dianping.cat.alarm.rule.entity.Rule;
@@ -32,6 +25,13 @@ import com.dianping.cat.alarm.rule.transform.DefaultJsonBuilder;
 import com.dianping.cat.alarm.spi.decorator.RuleFTLDecorator;
 import com.dianping.cat.report.alert.spi.config.BaseRuleConfigManager;
 import com.dianping.cat.system.page.config.Model;
+import org.unidal.lookup.annotation.Inject;
+import org.unidal.lookup.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 
 public class BaseProcesser {
 

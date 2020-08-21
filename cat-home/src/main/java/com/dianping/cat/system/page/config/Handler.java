@@ -18,32 +18,23 @@
  */
 package com.dianping.cat.system.page.config;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
-import java.io.IOException;
-import java.net.URLDecoder;
-import java.util.Date;
-
-import org.unidal.lookup.annotation.Inject;
-import org.unidal.web.mvc.PageHandler;
-import org.unidal.web.mvc.annotation.InboundActionMeta;
-import org.unidal.web.mvc.annotation.OutboundActionMeta;
-import org.unidal.web.mvc.annotation.PayloadMeta;
-import org.unidal.web.mvc.annotation.PreInboundActionMeta;
-
 import com.dianping.cat.Cat;
 import com.dianping.cat.helper.JsonBuilder;
 import com.dianping.cat.home.dal.report.ConfigModification;
 import com.dianping.cat.home.dal.report.ConfigModificationDao;
 import com.dianping.cat.system.SystemPage;
-import com.dianping.cat.system.page.config.processor.AlertConfigProcessor;
-import com.dianping.cat.system.page.config.processor.DependencyConfigProcessor;
-import com.dianping.cat.system.page.config.processor.EventConfigProcessor;
-import com.dianping.cat.system.page.config.processor.ExceptionConfigProcessor;
-import com.dianping.cat.system.page.config.processor.GlobalConfigProcessor;
-import com.dianping.cat.system.page.config.processor.HeartbeatConfigProcessor;
-import com.dianping.cat.system.page.config.processor.StorageConfigProcessor;
-import com.dianping.cat.system.page.config.processor.TransactionConfigProcessor;
+import com.dianping.cat.system.page.config.processor.*;
+import org.unidal.lookup.annotation.Inject;
+import org.unidal.web.mvc.PageHandler;
+import org.unidal.web.mvc.annotation.InboundActionMeta;
+import org.unidal.web.mvc.annotation.OutboundActionMeta;
+import org.unidal.web.mvc.annotation.PayloadMeta;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import java.io.IOException;
+import java.net.URLDecoder;
+import java.util.Date;
 
 public class Handler implements PageHandler<Context> {
 	@Inject
@@ -77,7 +68,6 @@ public class Handler implements PageHandler<Context> {
 	private ConfigModificationDao m_configModificationDao;
 
 	@Override
-	@PreInboundActionMeta("login")
 	@PayloadMeta(Payload.class)
 	@InboundActionMeta(name = "config")
 	public void handleInbound(Context ctx) throws ServletException, IOException {
@@ -85,7 +75,6 @@ public class Handler implements PageHandler<Context> {
 	}
 
 	@Override
-	@PreInboundActionMeta("login")
 	@OutboundActionMeta(name = "config")
 	public void handleOutbound(Context ctx) throws ServletException, IOException {
 		Model model = new Model(ctx);
@@ -167,7 +156,6 @@ public class Handler implements PageHandler<Context> {
 		case EVENT_RULE_DELETE:
 			m_eventConfigProcessor.process(action, payload, model);
 			break;
-
 		case ALERT_DEFAULT_RECEIVERS:
 		case ALERT_POLICY:
 			m_alertConfigProcessor.process(action, payload, model);

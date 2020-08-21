@@ -18,13 +18,9 @@
  */
 package com.dianping.cat.system.page.login;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Enumeration;
-
+import com.dianping.cat.system.SystemContext;
+import com.dianping.cat.system.SystemPage;
+import com.dianping.cat.system.page.login.service.*;
 import org.unidal.lookup.annotation.Inject;
 import org.unidal.web.jsp.function.CodecFunction;
 import org.unidal.web.mvc.ActionContext;
@@ -35,13 +31,12 @@ import org.unidal.web.mvc.annotation.OutboundActionMeta;
 import org.unidal.web.mvc.annotation.PayloadMeta;
 import org.unidal.web.mvc.model.entity.InboundActionModel;
 
-import com.dianping.cat.system.SystemContext;
-import com.dianping.cat.system.SystemPage;
-import com.dianping.cat.system.page.login.service.Credential;
-import com.dianping.cat.system.page.login.service.LoginMember;
-import com.dianping.cat.system.page.login.service.Session;
-import com.dianping.cat.system.page.login.service.SigninContext;
-import com.dianping.cat.system.page.login.service.SigninService;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Enumeration;
 
 public class Handler implements PageHandler<Context> {
 	@Inject
