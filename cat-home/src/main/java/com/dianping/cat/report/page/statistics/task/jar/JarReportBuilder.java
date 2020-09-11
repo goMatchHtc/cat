@@ -51,10 +51,7 @@ public class JarReportBuilder implements TaskBuilder {
 
 	public static final String ID = Constants.REPORT_JAR;
 
-	public static List<String> s_jars = Arrays
-							.asList("cat-client", "cat-core", "dpsf-net", "lion-client",	"avatar-cache", "zebra-ds-monitor-client",
-													"zebra-api", "swallow-client", "swallow-consumerclient",	"swallow-producerclient", "platform-sdk",
-													"squirrel-client");
+	public static List<String> s_jars = Arrays.asList("weier-boot-core", "ai-common-utils", "ai-data-resource-constants", "spring-boot", "spring-core", "feign-core", "mybatis", "druid", "jedis", "lettuce-core", "xxl-job-core", "sentinel-core");
 
 	@Inject
 	private JarReportService m_reportService;
