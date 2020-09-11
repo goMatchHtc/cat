@@ -18,18 +18,6 @@
  */
 package com.dianping.cat.report.page.state;
 
-import javax.servlet.ServletException;
-import java.io.IOException;
-import java.util.Date;
-
-import org.unidal.lookup.annotation.Inject;
-import org.unidal.lookup.util.StringUtils;
-import org.unidal.tuple.Pair;
-import org.unidal.web.mvc.PageHandler;
-import org.unidal.web.mvc.annotation.InboundActionMeta;
-import org.unidal.web.mvc.annotation.OutboundActionMeta;
-import org.unidal.web.mvc.annotation.PayloadMeta;
-
 import com.dianping.cat.Constants;
 import com.dianping.cat.config.server.ServerFilterConfigManager;
 import com.dianping.cat.consumer.state.StateAnalyzer;
@@ -43,6 +31,17 @@ import com.dianping.cat.report.page.state.service.StateReportService;
 import com.dianping.cat.report.service.ModelRequest;
 import com.dianping.cat.report.service.ModelResponse;
 import com.dianping.cat.report.service.ModelService;
+import org.unidal.lookup.annotation.Inject;
+import org.unidal.lookup.util.StringUtils;
+import org.unidal.tuple.Pair;
+import org.unidal.web.mvc.PageHandler;
+import org.unidal.web.mvc.annotation.InboundActionMeta;
+import org.unidal.web.mvc.annotation.OutboundActionMeta;
+import org.unidal.web.mvc.annotation.PayloadMeta;
+
+import javax.servlet.ServletException;
+import java.io.IOException;
+import java.util.Date;
 
 public class Handler implements PageHandler<Context> {
 	@Inject
@@ -142,6 +141,24 @@ public class Handler implements PageHandler<Context> {
 			model.setPieChart(new JsonBuilder().toJson(pair.getValue()));
 			break;
 		}
+
+//		if(StringUtils.isNotEmpty(payload.getLi())){
+//			switch (action) {
+//				case HOURLY:
+//					model.setAction(Action.HOURLY_P);
+//					break;
+//				case HISTORY:
+//					model.setAction(Action.HISTORY_P);
+//					break;
+//				case GRAPH:
+//					model.setAction(Action.GRAPH_P);
+//					break;
+//				case HISTORY_GRAPH:
+//					model.setAction(Action.HISTORY_GRAPH_P);
+//					break;
+//			}
+//
+//		}
 		m_jspViewer.view(ctx, model);
 	}
 

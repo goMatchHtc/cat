@@ -103,7 +103,7 @@ public class SessionManager implements ISessionManager<Session, Token, Credentia
 			};
 			break;
 		case ADMIN_PWD:
-			final String p = CatPropertyProvider.INST.getProperty("CAT_ADMIN_PWD", "admin");
+			final String p = CatPropertyProvider.INST.getProperty("CAT_ADMIN_PWD", "J8vl6nFQ052thUNo");
 
 			tokenCreator = new Function<Credential, Token>() {
 				@Override

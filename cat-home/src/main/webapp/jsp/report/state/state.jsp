@@ -13,7 +13,7 @@
 
 <a:hourly_report title="CAT State Report" navUrlPrefix="domain=${model.domain}&ip=${model.ipAddress}&show=${payload.show}">
 	<jsp:attribute name="subtitle">${w:format(model.report.startTime,'yyyy-MM-dd HH:mm:ss')} to ${w:format(model.report.endTime,'yyyy-MM-dd HH:mm:ss')}</jsp:attribute>
-	<jsp:body>	
+	<jsp:body>
 <table class="machines">
 	<tr style="text-align: left">
 		<th>&nbsp;[&nbsp; <c:choose>
@@ -47,7 +47,52 @@
 <c:if test="${ empty model.message}">
 	<h3 class="text-center text-success">CAT服务端正常</h3>
 </c:if>
-
+		<c:choose>
+			<c:when test="${payload.show == true}">
+				<table class="table table-hover table-striped table-condensed" width="100%">
+					<tr>
+						<td width="10%"><a href="?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&sort=domain&show=true">处理项目列表</a></td>
+						<td width="10%" class="right"><a href="?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&sort=total&show=true">处理消息总量</a></td>
+						<td width="10%" class="right"><a href="?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&sort=loss&show=true">丢失消息总量</a></td>
+						<td width="10%" class="right"><a href="?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&sort=size&show=true">压缩前消息大小(GB)</a></td>
+						<td width="15%" class="right"><a href="?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&sort=avg&show=true">平均消息大小(KB)</a></td>
+						<td width="5%" class="right"><a href="?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&sort=machine&show=true">机器总数</a></td>
+						<td width="45%">项目对应机器列表</td>
+					</tr>
+					<c:forEach var="item" items="${model.state.processDomains}"
+							   varStatus="status">
+						<tr class="">
+							<c:set var="lastIndex" value="${status.index}" />
+							<td>${item.name}</td>
+							<td style="text-align:right;">${w:format(item.total,'#,###,###,###,##0.#')}
+								</br>
+								<a href="?op=graph&ip=${model.ipAddress}&date=${model.date}&key=${item.name}:total" data-status="${item.name}:total" class="state_graph_link">[:: show ::]</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+							<td style="text-align:right;">${w:format(item.totalLoss,'#,###,###,###,##0.#')}
+								</br>
+								<a href="?op=graph&ip=${model.ipAddress}&date=${model.date}&key=${item.name}:totalLoss" data-status="${item.name}:totalLoss" class="state_graph_link">[:: show ::]</a></td>
+							<td style="text-align:right;">${w:format(item.size/1024/1024/1024,'#,###,##0.000')}
+								</br>
+								<a href="?op=graph&ip=${model.ipAddress}&date=${model.date}&key=${item.name}:size" data-status="${item.name}:size" class="state_graph_link">[:: show ::]</a></td>
+							<td style="text-align:right;">${w:format(item.avg/1024,'#,###,##0.000')}</td>
+							<td style="text-align:center;">${w:size(item.ips)}</td>
+							<td style="white-space:normal">${item.ips}</td>
+						</tr>
+						<tr class="graphs"><td colspan="7"  style="display:none"><div id="${item.name}:total" style="display:none"></div></td></tr>
+						<tr class="graphs"><td colspan="7"  style="display:none"><div id="${item.name}:totalLoss" style="display:none"></div></td></tr>
+						<tr class="graphs"><td colspan="7"  style="display:none"><div id="${item.name}:size" style="display:none"></div></td></tr>
+						<tr></tr>
+					</c:forEach>
+					<tr style="color: white;">
+						<td>${lastIndex+1}</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>${model.state.totalSize}</td>
+					</tr>
+				</table>
+			</c:when>
+		</c:choose>
 <table class="table table-hover table-striped table-condensed" width="100%">
 	<tr>
 		<th width="30%" colspan=2>指标</th>
@@ -169,50 +214,6 @@
 	<tr class="graphs"><td colspan="4" style="display:none"><div id="delayAvg" style="display:none"></div></td></tr>
 </table>
 </br>
-<c:choose>
-<c:when test="${payload.show == true}">
-<table class="table table-hover table-striped table-condensed" width="100%">
-	<tr>
-		<td width="10%"><a href="?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&sort=domain&show=true">处理项目列表</a></td>
-		<td width="10%" class="right"><a href="?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&sort=total&show=true">处理消息总量</a></td>
-		<td width="10%" class="right"><a href="?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&sort=loss&show=true">丢失消息总量</a></td>
-		<td width="10%" class="right"><a href="?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&sort=size&show=true">压缩前消息大小(GB)</a></td>
-		<td width="15%" class="right"><a href="?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&sort=avg&show=true">平均消息大小(KB)</a></td>
-		<td width="5%" class="right"><a href="?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&sort=machine&show=true">机器总数</a></td>
-		<td width="45%">项目对应机器列表</td>
-	</tr>
-	<c:forEach var="item" items="${model.state.processDomains}"
-				varStatus="status">
-		<tr class="">
-			<c:set var="lastIndex" value="${status.index}" />
-			<td>${item.name}</td>
-			<td style="text-align:right;">${w:format(item.total,'#,###,###,###,##0.#')}
-			</br>
-			<a href="?op=graph&ip=${model.ipAddress}&date=${model.date}&key=${item.name}:total" data-status="${item.name}:total" class="state_graph_link">[:: show ::]</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-			<td style="text-align:right;">${w:format(item.totalLoss,'#,###,###,###,##0.#')}
-			</br>
-			<a href="?op=graph&ip=${model.ipAddress}&date=${model.date}&key=${item.name}:totalLoss" data-status="${item.name}:totalLoss" class="state_graph_link">[:: show ::]</a></td>
-			<td style="text-align:right;">${w:format(item.size/1024/1024/1024,'#,###,##0.000')}
-			</br>
-			<a href="?op=graph&ip=${model.ipAddress}&date=${model.date}&key=${item.name}:size" data-status="${item.name}:size" class="state_graph_link">[:: show ::]</a></td>
-			<td style="text-align:right;">${w:format(item.avg/1024,'#,###,##0.000')}</td>
-			<td style="text-align:center;">${w:size(item.ips)}</td>
-			<td style="white-space:normal">${item.ips}</td>
-		</tr>
-		<tr class="graphs"><td colspan="7"  style="display:none"><div id="${item.name}:total" style="display:none"></div></td></tr>
-		<tr class="graphs"><td colspan="7"  style="display:none"><div id="${item.name}:totalLoss" style="display:none"></div></td></tr>
-		<tr class="graphs"><td colspan="7"  style="display:none"><div id="${item.name}:size" style="display:none"></div></td></tr>
-		<tr></tr>
-	</c:forEach>
-	<tr style="color: white;">
-		<td>${lastIndex+1}</td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td>${model.state.totalSize}</td>
-	</tr>
-</table></c:when></c:choose>
 	<res:useJs value="${res.js.local['state_js']}" target="bottom-js" />
 </jsp:body>
 </a:hourly_report>

@@ -25,7 +25,15 @@ public enum JspFile {
 
 	GRAPH("/jsp/report/state/stateGraphs.jsp"),
 
-	HISTORY_GRAPH("/jsp/report/state/stateGraphs.jsp");
+	HISTORY_GRAPH("/jsp/report/state/stateGraphs.jsp"),
+
+	HOURLY_P("/jsp/report/state/projects.jsp"),
+
+	HISTORY_P("/jsp/report/state/projectsHistory.jsp"),
+
+	GRAPH_P("/jsp/report/state/projectsGraphs.jsp"),
+
+	HISTORY_GRAPH_P("/jsp/report/state/projectsGraphs.jsp");
 
 	private String m_path;
 

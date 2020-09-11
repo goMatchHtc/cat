@@ -37,6 +37,9 @@ public class Payload extends AbstractReportPayload<Action, ReportPage> {
 	@FieldMeta("sort")
 	private String m_sort;
 
+	@FieldMeta("li")
+	private String m_li;
+
 	@FieldMeta("show")
 	private boolean m_show = true;
 
@@ -77,6 +80,14 @@ public class Payload extends AbstractReportPayload<Action, ReportPage> {
 
 	public void setSort(String sort) {
 		m_sort = sort;
+	}
+
+	public String getLi() {
+		return m_li;
+	}
+
+	public void setLi(String li) {
+		m_li = li;
 	}
 
 	public boolean isShow() {

@@ -18,15 +18,6 @@
  */
 package com.dianping.cat.report.page.logview.service;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.zip.GZIPInputStream;
-
-import org.unidal.helper.Files;
-import org.unidal.helper.Urls;
-import org.xml.sax.SAXException;
-
 import com.dianping.cat.config.server.ServerConfigManager;
 import com.dianping.cat.helper.TimeHelper;
 import com.dianping.cat.message.Message;
@@ -35,6 +26,17 @@ import com.dianping.cat.report.service.BaseRemoteModelService;
 import com.dianping.cat.report.service.ModelPeriod;
 import com.dianping.cat.report.service.ModelRequest;
 import com.dianping.cat.report.service.ModelResponse;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+import org.unidal.helper.Files;
+import org.unidal.helper.Urls;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.zip.GZIPInputStream;
 
 public class RemoteLogViewService extends BaseRemoteModelService<String> {
 
@@ -69,8 +71,10 @@ public class RemoteLogViewService extends BaseRemoteModelService<String> {
 
 			if (len > 0) {
 				String report = buildModel(xml);
-
-				response.setModel(report);
+				Document doc = Jsoup.parse(report);
+				Elements td = doc.getElementsByTag("td");
+				td.get(3).after(td.last()).after(td.get(td.toArray().length-2));
+				response.setModel(doc.body().html().replace("<tbody>", "").replace("</tbody>", ""));
 				t.addData("hit", "true");
 			}
 			t.setStatus(Message.SUCCESS);

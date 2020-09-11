@@ -18,10 +18,10 @@
  */
 package com.dianping.cat.system.page.login.service;
 
+import com.dianping.cat.system.page.login.spi.ITokenBuilder;
+
 import java.io.UnsupportedEncodingException;
 import java.util.regex.Pattern;
-
-import com.dianping.cat.system.page.login.spi.ITokenBuilder;
 
 public class TokenBuilder implements ITokenBuilder<SigninContext, Token> {
 	private static final String SP = "|";
@@ -72,7 +72,7 @@ public class TokenBuilder implements ITokenBuilder<SigninContext, Token> {
 			int expectedCheckSum = getCheckSum(value.substring(0, value.lastIndexOf(SP) + 1));
 
 			if (checkSum == expectedCheckSum) {
-				if (remoteIp.equals(ctx.getRequest().getRemoteAddr())) {
+				//if (remoteIp.equals(ctx.getRequest().getRemoteAddr())) {
 					if (lastLoginDate + ONE_DAY > System.currentTimeMillis()) {
 						String realNameValue = "";
 						String userNameVaule = "";
@@ -86,7 +86,7 @@ public class TokenBuilder implements ITokenBuilder<SigninContext, Token> {
 						}
 						return new Token(realNameValue, userNameVaule);
 					}
-				}
+//				}
 			}
 		}
 

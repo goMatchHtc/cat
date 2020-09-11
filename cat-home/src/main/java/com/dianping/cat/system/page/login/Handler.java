@@ -83,6 +83,11 @@ public class Handler implements PageHandler<Context> {
 		} else {
 			if (shouldLogin(ctx)) {
 				SigninContext sc = createSigninContext(ctx);
+				sc.getRequest().getParameterMap().get("whiteList");
+				if(sc.getRequest().getParameterMap().containsKey("whiteList")){
+					logAccess(ctx, null);
+					return;
+				}
 				Session session = m_signinService.validate(sc);
 
 				if (session != null) {

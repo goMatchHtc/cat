@@ -29,6 +29,7 @@ import org.unidal.web.mvc.PageHandler;
 import org.unidal.web.mvc.annotation.InboundActionMeta;
 import org.unidal.web.mvc.annotation.OutboundActionMeta;
 import org.unidal.web.mvc.annotation.PayloadMeta;
+import org.unidal.web.mvc.annotation.PreInboundActionMeta;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -69,12 +70,14 @@ public class Handler implements PageHandler<Context> {
 
 	@Override
 	@PayloadMeta(Payload.class)
+	@PreInboundActionMeta("login")
 	@InboundActionMeta(name = "config")
 	public void handleInbound(Context ctx) throws ServletException, IOException {
 		// display only, no action here
 	}
 
 	@Override
+	@PreInboundActionMeta("login")
 	@OutboundActionMeta(name = "config")
 	public void handleOutbound(Context ctx) throws ServletException, IOException {
 		Model model = new Model(ctx);

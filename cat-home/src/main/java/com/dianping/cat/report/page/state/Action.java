@@ -25,7 +25,15 @@ public enum Action implements org.unidal.web.mvc.Action {
 
 	GRAPH("graph"),
 
-	HISTORY_GRAPH("historyGraph");
+	HISTORY_GRAPH("historyGraph"),
+
+	HOURLY_P("view"),
+
+	HISTORY_P("history"),
+
+	GRAPH_P("graph"),
+
+	HISTORY_GRAPH_P("historyGraph");
 
 	private String m_name;
 

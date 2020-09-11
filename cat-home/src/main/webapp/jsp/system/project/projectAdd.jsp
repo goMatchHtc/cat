@@ -10,7 +10,7 @@
 
 <a:config>
 	<res:useJs value="${res.js.local['alarm_js']}" target="head-js" />
-	
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#projects_config').addClass('active open');
@@ -52,7 +52,7 @@
 			<td>项目负责人</td>
 		</tr>
 		<tr>
-			<td style="width:10%;">项目组邮件</td>
+			<td style="width:10%;">项目组钉钉</td>
 			<td><input type="name" name="project.email" class="input-xxlarge" /></td>
 			<td>字段(多个，逗号分割)</td>
 		</tr>
