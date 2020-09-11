@@ -81,7 +81,11 @@ public class StorageSQLBuilder implements StorageBuilder {
 
 	@Override
 	public boolean isEligable(Transaction t) {
-		return "SQL".equals(t.getType());
+		if(t.getType() == null) {
+			return false;
+		}
+
+		return t.getType().equals("SQL") || t.getType().startsWith("SQL.");
 	}
 
 }

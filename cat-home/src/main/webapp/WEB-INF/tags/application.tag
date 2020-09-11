@@ -82,31 +82,31 @@
 						<span class="menu-text">Business</span>
 					</a>
 				</li>
-				<%--<li id="RPC_report" >--%>
-					<%--<a href="/cat/r/storage?id=shop-server&type=RPC&domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}">--%>
-						<%--<i class="menu-icon fa fa-cloud"></i>--%>
-						<%--<span class="menu-text">Service</span>--%>
-					<%--</a>--%>
-				<%--</li>--%>
-				<%--<li id="Database_report" >--%>
-					<%--<a href="/cat/r/storage?id=cat&domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}">--%>
-						<%--<i class="menu-icon fa fa-lemon-o"></i>--%>
-						<%--<span class="menu-text">Database</span>--%>
-					<%--</a>--%>
-				<%--</li>--%>
-				<%--<li id="Cache_report" class="hsub"><a href="#" class="dropdown-toggle"> <i class="menu-icon glyphicon glyphicon-flash"></i> <span class="menu-text">Cache</span>--%>
-						<%--<b class="arrow fa fa-angle-down"></b>--%>
-					<%--</a> <b class="arrow"></b>--%>
-					<%--<ul class="submenu">--%>
-						<%--<li id="cache_operation"><a href="/cat/r/storage?id=memcached&type=Cache&domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}">--%>
-							<%--<i class="menu-icon fa fa-caret-right"></i>访问趋势</a>--%>
-							<%--<b class="arrow"></b></li>--%>
-						<%--&lt;%&ndash; <li id="cache_info"><a href="/cat/r/cache?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}&op=view">--%>
-							<%--<i class="menu-icon fa fa-caret-right"></i>访问情况</a>--%>
-							<%--<b class="arrow"></b></li> &ndash;%&gt;--%>
-					<%--</ul>--%>
-				<%--</li>--%>
-				<%-- <li id="Dependency_report" class="hsub"><a href="/cat/r/dependency?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=view&op=view" class="dropdown-toggle"> <i class="menu-icon glyphicon glyphicon-road"></i> <span class="menu-text">Dependency</span>
+				<li id="RPC_report" >
+					<a href="/cat/r/storage?id=shop-server&type=RPC&domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}">
+						<i class="menu-icon fa fa-cloud"></i>
+						<span class="menu-text">Service</span>
+					</a>
+				</li>
+				<li id="Database_report" >
+					<a href="/cat/r/storage?id=cat&domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}">
+						<i class="menu-icon fa fa-lemon-o"></i>
+						<span class="menu-text">Database</span>
+					</a>-
+				</li>
+				<li id="Cache_report" class="hsub"><a href="#" class="dropdown-toggle"> <i class="menu-icon glyphicon glyphicon-flash"></i> <span class="menu-text">Cache</span>
+						<b class="arrow fa fa-angle-down"></b>
+					</a> <b class="arrow"></b>
+					<ul class="submenu">
+						<li id="cache_operation"><a href="/cat/r/storage?id=memcached&type=Cache&domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}">
+							<i class="menu-icon fa fa-caret-right"></i>访问趋势</a>
+							<b class="arrow"></b></li>
+						&lt;%&ndash; <li id="cache_info"><a href="/cat/r/cache?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}&op=view">
+							<i class="menu-icon fa fa-caret-right"></i>访问情况</a>
+							<b class="arrow"></b></li> &ndash;%&gt;
+					</ul>
+				</li>
+				 <li id="Dependency_report" class="hsub"><a href="/cat/r/dependency?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=view&op=view" class="dropdown-toggle"> <i class="menu-icon glyphicon glyphicon-road"></i> <span class="menu-text">Dependency</span>
 						<b class="arrow fa fa-angle-down"></b>
 				</a> <b class="arrow"></b>
 					<ul class="submenu">
@@ -121,7 +121,7 @@
 							<b class="arrow"></b></li>
 						
 					</ul>
-				</li> --%>
+				</li>
 				<%--<li id="Matrix_report" >--%>
 					<%--<a href="/cat/r/matrix?domain=${model.domain}&ip=${model.ipAddress}&date=${model.date}&reportType=${payload.reportType}&op=${payload.action.name}">--%>
 						<%--<i class="menu-icon  fa  fa-flask"></i>--%>
@@ -134,7 +134,7 @@
 						<span class="menu-text">State</span>
 					</a>
 				</li>
-				<%-- <li id="Offline_report" class="hsub"><a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-film"></i> <span class="menu-text">Offline</span>
+				<li id="Offline_report" class="hsub"><a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-film"></i> <span class="menu-text">Offline</span>
 						<b class="arrow fa fa-angle-down"></b>
 					</a> <b class="arrow"></b>
 					<ul class="submenu">
@@ -181,7 +181,7 @@
 						</a>
 					</li>
 					</ul>
-				</li> --%>
+				</li>
 				<%--<li id="System_report" class="hsub"><a href="#" class="dropdown-toggle"> <i class="menu-icon fa fa-gavel"></i> <span class="menu-text">System</span>--%>
 						<%--<b class="arrow fa fa-angle-down"></b>--%>
 				<%--</a> <b class="arrow"></b>--%>

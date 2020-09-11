@@ -34,7 +34,7 @@ public class StorageCacheBuilder implements StorageBuilder {
 
 	public final static int LONG_THRESHOLD = 50;
 
-	public final static List<String> DEFAULT_METHODS = Arrays.asList("add", "get", "mGet", "remove");
+	public final static List<String> DEFAULT_METHODS = Arrays.asList("get", "set", "expire", "del", "exists");
 
 	@Override
 	public StorageItem build(Transaction t) {
@@ -79,8 +79,11 @@ public class StorageCacheBuilder implements StorageBuilder {
 	@Override
 	public boolean isEligable(Transaction t) {
 		String type = t.getType();
+		if(type == null) {
+			return false;
+		}
 
-		return type != null && (type.startsWith("Cache.") || type.startsWith("Squirrel."));
+		return type.startsWith("Cache.") || type.startsWith("Squirrel.") || type.startsWith("Redis.") || type.startsWith("Jedis.");
 	}
 
 }
